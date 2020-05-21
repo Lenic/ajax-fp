@@ -42,5 +42,12 @@ module.exports = {
       title: 'TS-DEMO',
       template: getPath('config/index.html')
     })
-  ]
+  ],
+  devServer: {
+    before: function(app, server) {
+      app.get('/some/path', function(req, res) {
+        res.json({ custom: 'response' });
+      });
+    }
+  }
 };
