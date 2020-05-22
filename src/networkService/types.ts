@@ -21,18 +21,18 @@ export type PluginResult = ComplexObject | Promise<ComplexObject>;
 export type NextCallback = () => PluginResult;
 export interface IPlugin {
   onRequest(next: NextCallback, config: AjaxConfig, body?: AjaxParameter): PluginResult;
-  onResponse(res: ResponseObject, next: NextCallback): PluginResult;
+  onResponse(next: NextCallback, res: ResponseObject): PluginResult;
 }
 
 export interface CreationResult {
   push(plugin: IPlugin): CreationResult;
-  send(config: AjaxConfig, data?: AjaxParameter): Promise<any>;
+  send<T extends ComplexObject>(config: AjaxConfig, data?: AjaxParameter): Promise<T>;
+}
+
+export interface AjaxOptions {
+  requestAction: (config: AjaxConfig, data?: AjaxParameter) => PluginResult;
+  responseAction: (res: ResponseObject) => PluginResult;
 }
 
 export type AjaxExecutor = (arg: ComplexObject) => Promise<ResponseObject>;
-export type AjaxCreation = (
-  executor: AjaxExecutor,
-  plugins: IPlugin[],
-  defaultRequestNextCallback: (config: AjaxConfig, data?: AjaxParameter) => PluginResult,
-  defaultResponseNextCallback: (res: ResponseObject) => PluginResult
-) => CreationResult;
+export type AjaxCreation = (executor: AjaxExecutor, plugins: IPlugin[], options: AjaxOptions) => CreationResult;

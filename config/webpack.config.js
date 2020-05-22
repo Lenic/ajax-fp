@@ -46,7 +46,7 @@ module.exports = {
   devServer: {
     before: function(app, server) {
       app.get('/some/path', function(req, res) {
-        res.json({ custom: 'response' });
+        res.json({ c: 0, m: null, r: { custom: 'response' } });
       });
     }
   }

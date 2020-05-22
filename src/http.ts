@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-import { Core, ComplexObject, ResponseObject } from './networkService';
-import { ResponseWrapper } from './networkService/responseWrapper';
+import { Core, ResponseObject, AjaxExecutor } from './networkService';
+import { ResponseGlobalPlugin } from './networkService/plugins/responseGlobal';
 
-export const ajax = Core(
-  (arg: ComplexObject) => axios(arg) as Promise<ResponseObject>,
-  [new ResponseWrapper()],
-  (config, data) => ({ ...config, data }),
-  v => v.data
-);
+const executor: AjaxExecutor = arg => axios(arg) as Promise<ResponseObject>;
+export const ajax = Core(executor, [new ResponseGlobalPlugin()], {
+  requestAction: (config, data) => ({ ...config, data }),
+  responseAction: v => ({ data: v.data.r })
+});
