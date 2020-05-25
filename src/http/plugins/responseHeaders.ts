@@ -1,4 +1,4 @@
-import { IPlugin, AjaxConfig, AjaxParameter, NextCallback, PluginResult, ResponseObject } from '../types';
+import { IPlugin, AjaxConfig, AjaxParameter, NextCallback, PluginResult, ResponseObject } from '../../networkService';
 
 export class ResponseHeaderPlugin implements IPlugin {
   onRequest(next: NextCallback, _: AjaxConfig, __?: AjaxParameter): PluginResult {

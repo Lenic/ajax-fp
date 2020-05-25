@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import { ajax } from './http';
 import { ComplexObject } from './networkService';
-import { CancelTokenPlugin } from './cancelToken';
+import { CancelTokenPlugin } from './http/plugins/cancelToken';
 import { common } from './networkService/plugins/common';
 import { defaultAjaxConfig, DefaultAjaxResult } from './api';
-import { ResponseHeaderPlugin } from './networkService/plugins/responseHeaders';
+import { ResponseHeaderPlugin } from './http/plugins/responseHeaders';
 
 import './app.less';
 

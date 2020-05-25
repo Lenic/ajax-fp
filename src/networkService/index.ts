@@ -4,8 +4,10 @@ export {
   ComplexObject,
   AjaxParameter,
   ResponseObject,
+  PluginResult,
   NextCallback,
   IPlugin,
+  AjaxOptions,
   CreationResult,
   AjaxExecutor,
   AjaxCreation

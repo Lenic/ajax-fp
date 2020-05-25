@@ -1,5 +1,12 @@
 import axios, { CancelTokenSource } from 'axios';
-import { IPlugin, AjaxConfig, AjaxParameter, NextCallback, PluginResult, ResponseObject } from './networkService/types';
+import {
+  IPlugin,
+  AjaxConfig,
+  AjaxParameter,
+  NextCallback,
+  PluginResult,
+  ResponseObject
+} from '../../networkService/types';
 
 export class CancelTokenPlugin implements IPlugin {
   private $source: CancelTokenSource = axios.CancelToken.source();
