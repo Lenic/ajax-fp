@@ -3,6 +3,7 @@ export {
   AjaxConfig,
   ComplexObject,
   AjaxParameter,
+  ExtraOptions,
   ResponseObject,
   PluginResult,
   NextCallback,

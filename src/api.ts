@@ -1,13 +1,11 @@
 import { AjaxConfig, ComplexObject } from './networkService';
 export const defaultAjaxConfig: AjaxConfig = {
-  url: '/some/path',
+  url: '/some/pathddd',
   method: 'GET'
 };
 
 export interface DefaultAjaxResult {
   date: Date;
   headers: ComplexObject;
-  data: {
-    custom: string;
-  };
+  custom: string;
 }

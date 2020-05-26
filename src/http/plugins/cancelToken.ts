@@ -5,19 +5,31 @@ import {
   AjaxParameter,
   NextCallback,
   PluginResult,
-  ResponseObject
+  ResponseObject,
+  ExtraOptions
 } from '../../networkService/types';
+import { getNext } from '../../networkService/utils';
 
 export class CancelTokenPlugin implements IPlugin {
   private $source: CancelTokenSource = axios.CancelToken.source();
 
-  onRequest(next: NextCallback, _: AjaxConfig, __?: AjaxParameter): PluginResult {
+  onRequest(next: NextCallback, _: AjaxConfig, __: AjaxParameter, ___: ExtraOptions): PluginResult {
     this.$source = axios.CancelToken.source();
 
-    return Promise.resolve(next()).then(v => ({ ...v, cancelToken: this.$source.token }));
+    return getNext(next).then(v => ({ ...v, cancelToken: this.$source.token }));
   }
 
-  onResponse(next: NextCallback, _: ResponseObject): PluginResult {
+  onResponse(
+    next: NextCallback,
+    _: ResponseObject,
+    __: AjaxConfig,
+    ___: AjaxParameter,
+    ____: ExtraOptions
+  ): PluginResult {
+    return next();
+  }
+
+  onError(next: NextCallback, _: Error, __: AjaxConfig, ___: AjaxParameter, ____: ExtraOptions): PluginResult {
     return next();
   }
 

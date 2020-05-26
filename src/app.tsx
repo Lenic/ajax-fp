@@ -10,7 +10,7 @@ import { ResponseHeaderPlugin } from './http/plugins/responseHeaders';
 import './app.less';
 
 export const App = () => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(1970, 0, 1));
   const [ajaxData, setAjaxData] = useState('');
   const [headers, setHeaders] = useState({} as ComplexObject);
 
@@ -25,7 +25,7 @@ export const App = () => {
         console.log(r);
         setDate(r.date);
         setHeaders(r.headers);
-        setAjaxData(r.data.custom);
+        setAjaxData(r.custom);
       });
 
     return () => token.cancel();
