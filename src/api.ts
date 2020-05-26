@@ -1,6 +1,6 @@
 import { AjaxConfig, ComplexObject } from './networkService';
 export const defaultAjaxConfig: AjaxConfig = {
-  url: '/some/pathddd',
+  url: '/some/path',
   method: 'GET'
 };
 
